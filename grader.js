@@ -27,14 +27,17 @@ var cheerio = require('cheerio');
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
 
+// checks if file exist
 var assertFileExists = function(infile) {
     var instr = infile.toString();
     if(!fs.existsSync(instr)) {
         console.log("%s does not exist. Exiting.", instr);
-        process.exit(1); // http://nodejs.org/api/process.html#process_process_exit_code
+        process.exit(1);
+ // http://nodejs.org/api/process.html#process_process_exit_code
     }
     return instr;
 };
+
 
 var cheerioHtmlFile = function(htmlfile) {
     return cheerio.load(fs.readFileSync(htmlfile));
@@ -71,3 +74,4 @@ if(require.main == module) {
     console.log(outJson);
 } else {
     exports.checkHtmlFile = checkHtmlFile;
+}
